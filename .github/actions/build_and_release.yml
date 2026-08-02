@@ -1,0 +1,61 @@
+name: Build and Release
+author: tedenes
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    tags:
+      - 'v*' # Triggers the release process when a version tag is pushed (e.g., v0.0.1)
+  pull_request:
+    branches: [ "main", "master" ]
+
+permissions:
+  contents: write # Required to create and upload assets to GitHub Releases
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 1. Run tests before compiling the final asset
+      - name: Run Tests
+        run: ./gradlew test --no-daemon
+
+      # 2. Build the production-ready executable JAR after tests pass
+      - name: Build JAR Asset
+        if: success()
+        run: ./gradlew bootJar --no-daemon
+
+      # 3. Locate and stage the built JAR for the upload step
+      - name: Stage JAR file
+        if: startsWith(github.ref, 'refs/tags/v')
+        id: stage-jar
+        run: |
+          JAR_PATH=$(find build/libs -name "*.jar" ! -name "*-plain.jar" | head -n 1)
+          echo "JAR_PATH=$JAR_PATH" >> $GITHUB_ENV
+          echo "Found production JAR: $JAR_PATH"
+
+      # 4. Automatically publish to GitHub Releases (Runs only on tags)
+      - name: Create GitHub Release and Upload JAR
+        if: startsWith(github.ref, 'refs/tags/v') && success()
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.JAR_PATH }}
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
