@@ -1,0 +1,94 @@
+openapi: "3.1.0"
+info:
+  title: "Airline_Booking_System API"
+  description: "Core API for managing and interacting with the Airline Booking System."
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:8080"
+    description: "Local Development Server"
+paths:
+  /api/v1/flights/customer/search:
+    post:
+      summary: "Search available flights"
+      operationId: "searchFlights"
+      description: "Retrieves a list of available flights matching the specified criteria, including origin/destination IATA codes, departure date, and passenger breakdowns (adults, children, infants)."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlightSearchRequestDto"
+        required: true
+      responses:
+        "200":
+          description: "Successfully retrieved matching flights."
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/FlightDto"
+components:
+  schemas:
+    PassengerDto:
+      type: "object"
+      properties:
+        count:
+          type: "integer"
+          format: "int32"
+        type:
+          type: "string"
+          enum:
+            - "ADULT"
+            - "CHILD"
+            - "INFANT"
+      required:
+        - "count"
+        - "type"
+    FlightSearchRequestDto:
+      type: "object"
+      properties:
+        departureAirportIataCode:
+          type: "string"
+        arrivalAirportIataCode:
+          type: "string"
+        departureDate:
+          type: "string"
+          format: "date"
+        passengers:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/PassengerDto"
+      required:
+        - "departureAirportIataCode"
+        - "arrivalAirportIataCode"
+        - "departureDate"
+        - "passengers"
+    AirportDto:
+      type: "object"
+      properties:
+        iataCode:
+          type: "string"
+        airportName:
+          type: "string"
+      required:
+        - "iataCode"
+        - "airportName"
+    Instant:
+      type: "object"
+      properties: { }
+    FlightDto:
+      type: "object"
+      properties:
+        departureAirportDto:
+          $ref: "#/components/schemas/AirportDto"
+        arrivalAirportDto:
+          $ref: "#/components/schemas/AirportDto"
+        departureDateTime:
+          $ref: "#/components/schemas/Instant"
+        arrivalTime:
+          $ref: "#/components/schemas/Instant"
+      required:
+        - "departureAirportDto"
+        - "arrivalAirportDto"
+        - "departureDateTime"
+        - "arrivalTime"
