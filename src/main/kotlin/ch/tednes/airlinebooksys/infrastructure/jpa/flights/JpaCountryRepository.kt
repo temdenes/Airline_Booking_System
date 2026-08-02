@@ -1,4 +1,10 @@
 package ch.tednes.airlinebooksys.infrastructure.jpa.flights
 
-interface JpaCountryRepository : org.springframework.data.jpa.repository.JpaRepository<ch.tednes.airlinebooksys.infrastructure.entity.flights.CountryEntity, java.util.UUID> {
+import ch.tednes.airlinebooksys.infrastructure.entity.flights.CountryEntity
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
+import java.util.*
+
+@Repository
+interface JpaCountryRepository : JpaRepository<CountryEntity, UUID> {
 }

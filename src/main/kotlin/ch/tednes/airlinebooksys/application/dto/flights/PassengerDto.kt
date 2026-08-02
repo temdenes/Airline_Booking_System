@@ -1,3 +1,8 @@
 package ch.tednes.airlinebooksys.application.dto.flights
 
-data class Passanger()
+import ch.tednes.airlinebooksys.domain.model.bookings.PassengerType
+
+data class PassengerDto(
+    val count: Int,
+    val type: PassengerType
+)

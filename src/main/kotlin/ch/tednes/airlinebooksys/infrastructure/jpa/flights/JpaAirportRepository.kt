@@ -1,4 +1,9 @@
 package ch.tednes.airlinebooksys.infrastructure.jpa.flights
 
-interface AirportRepository : org.springframework.data.jpa.repository.JpaRepository<ch.tednes.airlinebooksys.infrastructure.entity.flights.AirportEntity, kotlin.String> {
+import ch.tednes.airlinebooksys.infrastructure.entity.flights.AirportEntity
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
+
+@Repository
+interface JpaAirportRepository : JpaRepository<AirportEntity, String> {
 }

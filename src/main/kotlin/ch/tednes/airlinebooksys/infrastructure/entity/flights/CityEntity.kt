@@ -1,9 +1,14 @@
-package ch.tednes.airlinebooksys.domain.model.flights
+package ch.tednes.airlinebooksys.infrastructure.entity.flights
 
-import java.util.UUID
+import jakarta.persistence.*
+import java.util.*
 
-data class City(
-    val id: UUID? = null,
-    val name: String,
-    val country: Country
+@Entity
+class CityEntity(
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    var id: UUID? = null,
+    var name: String,
+    @ManyToOne
+    var country: CountryEntity
 )

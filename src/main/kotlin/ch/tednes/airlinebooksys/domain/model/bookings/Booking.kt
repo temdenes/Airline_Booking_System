@@ -1,3 +1,8 @@
 package ch.tednes.airlinebooksys.domain.model.bookings
 
-data class Booking()
+import ch.tednes.airlinebooksys.domain.model.flights.Flight
+
+data class Booking(
+    val bookingNumber: String,
+    val flight: Flight
+)

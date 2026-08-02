@@ -1,3 +1,9 @@
 package ch.tednes.airlinebooksys.domain.model.flights
 
-data class Country()
+import java.util.*
+
+data class Country(
+    val id: UUID? = null,
+    val name: String,
+    val countryCode: String
+)

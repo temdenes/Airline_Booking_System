@@ -1,4 +1,7 @@
 package ch.tednes.airlinebooksys.domain.model.bookings
 
-enum class PassangerType {
+enum class PassengerType {
+    ADULT,
+    CHILD,
+    INFANT
 }

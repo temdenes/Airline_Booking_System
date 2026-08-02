@@ -1,4 +1,17 @@
 package ch.tednes.airlinebooksys.infrastructure.jpa.flights
 
-interface Flight : org.springframework.data.jpa.repository.JpaRepository<ch.tednes.airlinebooksys.infrastructure.entity.flights.FlightEntity, java.util.UUID> {
+import ch.tednes.airlinebooksys.infrastructure.entity.flights.FlightEntity
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
+import java.time.Instant
+import java.util.*
+
+@Repository
+interface JpaFlightsRepository : JpaRepository<FlightEntity, UUID> {
+    fun findAllByDepartureDateTimeBetweenAndArrivalAirport_IataCodeAndDepartureAirport_IataCode(
+        departureDateTimeAfter: Instant,
+        departureDateTimeBefore: Instant,
+        arrivalAirportIataCode: String,
+        departureAirportIataCode: String
+    ): MutableList<FlightEntity>
 }

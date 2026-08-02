@@ -1,7 +1,16 @@
 package ch.tednes.airlinebooksys.domain.repository.flights
 
-import org.springframework.stereotype.Repository
+import ch.tednes.airlinebooksys.domain.model.flights.Flight
+import java.time.LocalDate
 
-@Repository
-class FlightsRepository {
+interface FlightsRepository {
+    fun findAll(): List<Flight>
+    fun findAllByDepartureAndDestinationAndDate(
+        departureAirportIataCode: String,
+        destinationAirportIataCode: String,
+        date: LocalDate
+    ): List<Flight>
+
+    fun saveFlight(flight: Flight): Flight
+    fun saveAllFlight(flights: List<Flight>): List<Flight>
 }

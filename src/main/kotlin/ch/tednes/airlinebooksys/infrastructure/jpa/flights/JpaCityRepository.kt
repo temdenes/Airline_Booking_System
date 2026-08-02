@@ -1,4 +1,10 @@
 package ch.tednes.airlinebooksys.infrastructure.jpa.flights
 
-interface JpaCityRepository : org.springframework.data.jpa.repository.JpaRepository<ch.tednes.airlinebooksys.infrastructure.entity.flights.CityEntity, java.util.UUID> {
+import ch.tednes.airlinebooksys.infrastructure.entity.flights.CityEntity
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
+import java.util.*
+
+@Repository
+interface JpaCityRepository : JpaRepository<CityEntity, UUID> {
 }

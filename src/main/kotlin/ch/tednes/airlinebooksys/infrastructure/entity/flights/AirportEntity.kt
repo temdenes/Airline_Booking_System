@@ -1,10 +1,16 @@
-package ch.tednes.airlinebooksys.domain.model.flights
+package ch.tednes.airlinebooksys.infrastructure.entity.flights
 
-import java.util.UUID
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
+import jakarta.persistence.ManyToOne
 
-data class Airport(
-    val id: UUID? = null,
-    val code: String,
-    val name: String,
-    val city: City,
+@Entity
+class AirportEntity(
+    @Id
+    @Column(unique = true, length = 3)
+    var iataCode: String,
+    var name: String,
+    @ManyToOne
+    var city: CityEntity,
 )

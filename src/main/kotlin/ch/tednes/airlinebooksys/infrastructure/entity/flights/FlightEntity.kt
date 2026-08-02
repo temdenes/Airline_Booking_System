@@ -1,14 +1,20 @@
-package ch.tednes.airlinebooksys.domain.model.flights
+package ch.tednes.airlinebooksys.infrastructure.entity.flights
 
+import jakarta.persistence.*
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
-data class Flight(
-    val id: UUID,
-    val flightNumber: String,
-    val departureAirport: Airport,
-    val arrivalAirport: Airport,
-    val departureDateTime: Instant,
-    val arrivalDateTime: Instant,
-    val distanceMiles: Int
+@Entity
+class FlightEntity(
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    var id: UUID? = null,
+    var flightNumber: String,
+    @ManyToOne
+    var departureAirport: AirportEntity,
+    @ManyToOne
+    var arrivalAirport: AirportEntity,
+    var departureDateTime: Instant,
+    var arrivalDateTime: Instant,
+    var distanceMiles: Int
 )

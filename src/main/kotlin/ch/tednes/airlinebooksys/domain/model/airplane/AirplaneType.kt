@@ -1,3 +1,8 @@
 package ch.tednes.airlinebooksys.domain.model.airplane
 
-data class AIrplaneType()
+import java.util.*
+
+data class AirplaneType(
+    val id: UUID,
+    val name: String
+)
