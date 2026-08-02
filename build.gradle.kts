@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "ch.tednes"
-version = "0.0.1-SNAPSHOT"
+version = project.findProperty("version")?.toString() ?: "0.0.1-SNAPSHOT"
 description = "Airline_Booking_System"
 
 java {

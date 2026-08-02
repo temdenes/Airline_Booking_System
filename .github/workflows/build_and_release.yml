@@ -34,9 +34,14 @@ jobs:
         run: ./gradlew test --no-daemon
 
       # 2. Build the production-ready executable JAR after tests pass
+      # Dynamic Versioning: If triggered by a Git tag, it injects the '-Pversion' parameter.
+      # If triggered by a regular push or PR, the parameter is skipped entirely.
       - name: Build JAR Asset
         if: success()
-        run: ./gradlew bootJar --no-daemon
+        run: |
+          ./gradlew bootJar \
+            ${{ startsWith(github.ref, 'refs/tags/v') && format('-Pversion={0}', github.ref_name) || '' }} \
+            --no-daemon
 
       # 3. Locate and stage the built JAR for the upload step
       - name: Stage JAR file
