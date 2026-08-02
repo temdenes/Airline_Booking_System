@@ -1,5 +1,4 @@
 name: Build and Release
-author: tedenes
 
 on:
   push:
