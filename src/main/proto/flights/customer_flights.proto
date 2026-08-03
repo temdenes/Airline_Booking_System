@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package flights;
+
+option java_multiple_files = true;
+option java_package = "ch.tednes.airlinebooksys.proto"; // Update to your package name
+option java_outer_classname = "FlightsProto";
+
+import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+
+service CustomerFlightsService {
+  rpc SearchFlights (FlightsSearch) returns (FlightSearchResponse);
+}
+
+message FlightsSearch {
+  string departure_airport_iata_code = 1;
+  string arrival_airport_iata_code = 2;
+  google.type.Date departure_date = 3;
+  repeated Passenger passengers = 4;
+}
+
+message FlightSearchResponse {
+  repeated Flight flights = 1;
+}
+
+message Flight {
+  string flight_number = 1;
+  Airport departure_airport = 2;
+  Airport arrival_airport = 3;
+  google.protobuf.Timestamp departure_time = 4;
+  google.protobuf.Timestamp arrival_time = 5;
+}
+
+message Airport {
+  string iata_code = 1;
+  string name = 2;
+}
+
+enum PassengerType {
+  ADULT = 0;
+  CHILD = 1;
+  INFANT = 2;
+}
+
+message Passenger {
+  int32 count = 1;
+  PassengerType type = 2;
+}
