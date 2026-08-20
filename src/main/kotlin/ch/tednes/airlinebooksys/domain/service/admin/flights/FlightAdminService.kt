@@ -64,29 +64,25 @@ class FlightAdminService(
      * @return DefaultResponse with success or failure message
      */
     fun updateCountry(body: CountryUpdateRequestDto): DefaultResponse {
-        countriesRepository.findByCode(body.oldCountryCode).let { existingCountry ->
-            if (existingCountry == null) {
-                return DefaultResponse(
-                    success = false,
-                    message = "Country with code ${body.oldCountryCode} does not exist."
-                )
-            } else {
-                countriesRepository.save(body.newCountry).let { existingCountry ->
-                    if (existingCountry == body.newCountry) {
-                        return DefaultResponse(
-                            success = true,
-                            message = "Country with code ${body.oldCountryCode} updated successfully."
-                        )
-                    } else {
-                        return DefaultResponse(
-                            success = false,
-                            message = "Country with code ${body.oldCountryCode} already exists."
-                        )
-                    }
-                }
-            }
-        }
+    val existingCountry = countriesRepository.findByCode(body.oldCountryCode)
+        ?: return DefaultResponse(
+            success = false,
+            message = "Country with code ${body.oldCountryCode} does not exist."
+        )
+
+    val savedCountry = countriesRepository.save(body.newCountry)
+    return if (savedCountry == body.newCountry) {
+        DefaultResponse(
+            success = true,
+            message = "Country with code ${body.newCountry.countryCode} updated successfully."
+        )
+    } else {
+        DefaultResponse(
+            success = false,
+            message = "Country with code ${existingCountry.countryCode} could not be updated."
+        )
     }
+}
 
     /**
      * Delete Country
