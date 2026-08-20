@@ -74,7 +74,7 @@ class FlightAdminService(
                 countriesRepository.save(body.newCountry).let { existingCountry ->
                     if (existingCountry == body.newCountry) {
                         return DefaultResponse(
-                            success = false,
+                            success = true,
                             message = "Country with code ${body.oldCountryCode} updated successfully."
                         )
                     } else {
