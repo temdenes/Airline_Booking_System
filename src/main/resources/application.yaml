@@ -1,8 +1,16 @@
 spring:
   application:
     name: Airline_Booking_System
+  security:
+    user:
+      password: test
+      name: user
   datasource:
     url: jdbc:postgresql://${BOOKING_SYS_DB_URL}:${BOOKING_SYS_DB_PORT}/postgres
     username: ${BOOKING_SYS_DB_USERNAME}
     password: ${BOOKING_SYS_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+

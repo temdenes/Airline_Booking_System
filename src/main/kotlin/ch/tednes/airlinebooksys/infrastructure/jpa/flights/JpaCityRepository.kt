@@ -7,4 +7,6 @@ import java.util.*
 
 @Repository
 interface JpaCityRepository : JpaRepository<CityEntity, UUID> {
+    fun findAllByCountry_CountryCodeAndName(countryCountryCode: String, name: String): MutableList<CityEntity>
+    fun findAllByCountry_CountryCode(countryCountryCode: String): MutableList<CityEntity>
 }

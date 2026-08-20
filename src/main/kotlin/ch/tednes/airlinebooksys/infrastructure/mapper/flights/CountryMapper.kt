@@ -5,14 +5,12 @@ import ch.tednes.airlinebooksys.infrastructure.entity.flights.CountryEntity
 
 fun CountryEntity.toDomain(): Country =
     Country(
-        id = this.id,
-        name = this.name,
-        countryCode = this.countryCode
+        countryCode = this.countryCode,
+        name = this.name
     )
 
 fun Country.toEntity(): CountryEntity =
     CountryEntity(
-        id = this.id,
-        name = this.name,
-        countryCode = this.countryCode
+        countryCode = this.countryCode,
+        name = this.name
     )

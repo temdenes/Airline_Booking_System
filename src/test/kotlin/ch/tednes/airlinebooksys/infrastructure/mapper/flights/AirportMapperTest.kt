@@ -1,6 +1,6 @@
 package ch.tednes.airlinebooksys.infrastructure.mapper.flights
 
-import ch.tednes.airlinebooksys.application.dto.flights.AirportDto
+import ch.tednes.airlinebooksys.application.dto.customer.flights.AirportDto
 import ch.tednes.airlinebooksys.domain.model.flights.Airport
 import ch.tednes.airlinebooksys.domain.model.flights.City
 import ch.tednes.airlinebooksys.domain.model.flights.Country
@@ -49,7 +49,6 @@ class AirportMapperTest {
         assertEquals(testEntityData.city.name, res.city.name)
         assertEquals(testEntityData.city.country.name, res.city.country.name)
         assertEquals(testEntityData.city.country.countryCode, res.city.country.countryCode)
-        assertEquals(testEntityData.city.country.id, res.city.country.id)
         assertEquals(testEntityData.city.id, res.city.id)
     }
 

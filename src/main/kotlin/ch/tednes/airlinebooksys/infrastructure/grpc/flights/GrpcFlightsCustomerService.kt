@@ -1,9 +1,9 @@
 package ch.tednes.airlinebooksys.infrastructure.grpc.flights
 
-import ch.tednes.airlinebooksys.application.dto.flights.FlightSearchRequestDto
-import ch.tednes.airlinebooksys.application.dto.flights.PassengerDto
+import ch.tednes.airlinebooksys.application.dto.customer.flights.FlightSearchRequestDto
+import ch.tednes.airlinebooksys.application.dto.customer.flights.PassengerDto
 import ch.tednes.airlinebooksys.domain.model.bookings.PassengerType
-import ch.tednes.airlinebooksys.domain.service.flight.FlightServiceCustomer
+import ch.tednes.airlinebooksys.domain.service.customer.flight.FlightServiceCustomer
 import ch.tednes.airlinebooksys.infrastructure.mapper.util.toGrpcLocalDate
 import ch.tednes.airlinebooksys.infrastructure.mapper.util.toGrpcTimestamp
 import ch.tednes.airlinebooksys.proto.Airport

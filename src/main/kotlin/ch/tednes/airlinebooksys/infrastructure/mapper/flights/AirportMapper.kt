@@ -1,6 +1,6 @@
 package ch.tednes.airlinebooksys.infrastructure.mapper.flights
 
-import ch.tednes.airlinebooksys.application.dto.flights.AirportDto
+import ch.tednes.airlinebooksys.application.dto.customer.flights.AirportDto
 import ch.tednes.airlinebooksys.domain.model.flights.Airport
 import ch.tednes.airlinebooksys.infrastructure.entity.flights.AirportEntity
 

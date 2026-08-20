@@ -1,11 +1,11 @@
 package ch.tednes.airlinebooksys.infrastructure.api.flights
 
-import ch.tednes.airlinebooksys.application.dto.flights.AirportDto
-import ch.tednes.airlinebooksys.application.dto.flights.FlightDto
-import ch.tednes.airlinebooksys.application.dto.flights.FlightSearchRequestDto
-import ch.tednes.airlinebooksys.application.dto.flights.PassengerDto
+import ch.tednes.airlinebooksys.application.dto.customer.flights.AirportDto
+import ch.tednes.airlinebooksys.application.dto.customer.flights.FlightDto
+import ch.tednes.airlinebooksys.application.dto.customer.flights.FlightSearchRequestDto
+import ch.tednes.airlinebooksys.application.dto.customer.flights.PassengerDto
 import ch.tednes.airlinebooksys.domain.model.bookings.PassengerType
-import ch.tednes.airlinebooksys.domain.service.flight.FlightServiceCustomer
+import ch.tednes.airlinebooksys.domain.service.customer.flight.FlightServiceCustomer
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk

@@ -8,7 +8,10 @@ class CityEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     var id: UUID? = null,
+
     var name: String,
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_country_code")
     var country: CountryEntity
 )

@@ -1,8 +1,10 @@
 package ch.tednes.airlinebooksys.infrastructure.api.flights
 
-import ch.tednes.airlinebooksys.application.dto.flights.FlightDto
-import ch.tednes.airlinebooksys.application.dto.flights.FlightSearchRequestDto
-import ch.tednes.airlinebooksys.domain.service.flight.FlightServiceCustomer
+import ch.tednes.airlinebooksys.application.dto.customer.flights.CountryDto
+import ch.tednes.airlinebooksys.application.dto.customer.flights.FlightDto
+import ch.tednes.airlinebooksys.application.dto.customer.flights.FlightSearchRequestDto
+import ch.tednes.airlinebooksys.domain.service.customer.flight.FlightServiceCustomer
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController
 class FlightsCustomerController(
     private val flightServiceCustomer: FlightServiceCustomer
 ) {
+    @GetMapping("/airports")
+    fun getAllAirports(): List<CountryDto> = flightServiceCustomer.getAllAirports()
+
     @PostMapping("/search")
     fun searchFlights(
         @RequestBody request: FlightSearchRequestDto

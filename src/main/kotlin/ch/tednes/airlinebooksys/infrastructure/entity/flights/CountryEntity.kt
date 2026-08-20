@@ -1,5 +1,6 @@
 package ch.tednes.airlinebooksys.infrastructure.entity.flights
 
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -9,8 +10,7 @@ import java.util.*
 @Entity
 class CountryEntity(
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    var id: UUID? = null,
-    var name: String,
-    var countryCode: String
+    @Column(name = "country_code", unique = true, nullable = false)
+    var countryCode: String,
+    var name: String
 )

@@ -1,28 +1,33 @@
-package ch.tednes.airlinebooksys.domain.flights
+package ch.tednes.airlinebooksys.domain.customer.flights
 
-import ch.tednes.airlinebooksys.application.dto.flights.FlightDto
-import ch.tednes.airlinebooksys.application.dto.flights.FlightSearchRequestDto
+import ch.tednes.airlinebooksys.application.dto.customer.flights.FlightDto
+import ch.tednes.airlinebooksys.application.dto.customer.flights.FlightSearchRequestDto
 import ch.tednes.airlinebooksys.domain.model.flights.Flight // Assuming your entity package
+import ch.tednes.airlinebooksys.domain.repository.flights.AirportsRepository
 import ch.tednes.airlinebooksys.domain.repository.flights.FlightsRepository
-import ch.tednes.airlinebooksys.domain.service.flight.FlightServiceCustomer
+import ch.tednes.airlinebooksys.domain.service.customer.flight.FlightServiceCustomer
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
 import java.time.LocalDate
 import java.util.UUID.randomUUID
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class FlightServiceCustomerTest {
 
     // 1. Create a mock instance of the repository
     private val flightsRepo: FlightsRepository = mockk()
+    private val airportsRepo: AirportsRepository = mockk()
 
     // 2. Inject the mock into the service
-    private val flightService = FlightServiceCustomer(flightsRepo)
+    private val flightService = FlightServiceCustomer(
+        flightsRepo = flightsRepo,
+        airportsRepo = airportsRepo
+    )
 
     @AfterEach
     fun tearDown() {
@@ -82,4 +87,11 @@ class FlightServiceCustomerTest {
             flightsRepo.findAllByDepartureAndDestinationAndDate("ZRH", "LAX", testDate)
         }
     }
+
+    /**
+    @Test
+    fun `Test GetAllAirports should return empty list when no flights match criteria`() {
+
+    }
+    */
 }

@@ -1,4 +1,4 @@
-package ch.tednes.airlinebooksys.application.dto.flights
+package ch.tednes.airlinebooksys.application.dto.customer.flights
 
 import ch.tednes.airlinebooksys.domain.model.bookings.PassengerType
 

@@ -11,6 +11,7 @@ import "google/type/date.proto";
 
 service CustomerFlightsService {
   rpc SearchFlights (FlightsSearch) returns (FlightSearchResponse);
+  rpc GetAllAirports (GetAllAirportsRequest) returns (GetAllAirportsResponse);
 }
 
 message FlightsSearch {
@@ -22,6 +23,12 @@ message FlightsSearch {
 
 message FlightSearchResponse {
   repeated Flight flights = 1;
+}
+
+message GetAllAirportsRequest {}
+
+message GetAllAirportsResponse {
+  repeated Airport airports = 1;
 }
 
 message Flight {

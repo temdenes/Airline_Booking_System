@@ -34,7 +34,6 @@ class CityMapperTest {
         assertEquals(testEntityData.name, res.name)
         assertEquals(testEntityData.country.name, res.country.name)
         assertEquals(testEntityData.country.countryCode, res.country.countryCode)
-        assertEquals(testEntityData.country.id, res.country.id)
     }
 
     @Test

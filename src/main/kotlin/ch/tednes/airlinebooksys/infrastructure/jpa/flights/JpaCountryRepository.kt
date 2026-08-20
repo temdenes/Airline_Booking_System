@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface JpaCountryRepository : JpaRepository<CountryEntity, UUID> {
+interface JpaCountryRepository : JpaRepository<CountryEntity, String> {
 }
